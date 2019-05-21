@@ -35,22 +35,65 @@ function findHeight(node, counter=1) {
 }
 
 
+function isBST(node) {
+  if(!node.left && !node.right) {
+    return true;
+  }
+
+  if (!node.left){
+    return isBST(node.right);
+  }
+  if(!node.right){
+    return isBST(node.left);
+  }
+
+  if (node.left.key > node.key || node.right.key < node.key) {
+    return false;
+  } else  { 
+    return isBST(node.right) && isBST(node.left);
+  }
+}
+
+function _findMax(node) {
+  if(!node.right) {
+      return node;
+  }
+  return _findMax(node.right);
+}
+
+function findSecondLargest(node){
+  if(!node.left) {
+    return node.parent
+  } else {
+    return _findMax(node.left);
+  }
+}
+
+function thirdLargest(node) {
+  if(!node.left && !node.right) {
+    return "tree is empty!!!!!";
+  }
+
+  const maxNum = _findMax(node);
+  return findSecondLargest(findSecondLargest(maxNum)).key;
+}
+
 
 function main() {
   const BST = new BinarySearchTree;
 
-  const nums = [3,1,4,6,9,2,5,7,10,11,12];
+  const nums = [3,1,4,6,9,2,5,7,11,12];
+  const nums2 = [5, 4, 3, 1]
   nums.forEach(num => BST.insert(num, num));
+  //nums2.forEach(num => BST.insert(num, num));
 
   // const easyQ = 'EASYQUESTION';
   // easyQ.split('').forEach(letter => BST.insert(letter, letter));
 
-  console.log(findHeight(BST));
-
-
-
-  // console.log(BST);
-
+  //console.log(findHeight(BST));
+  console.log(BST);
+  //console.log(isBST(BST))
+  console.log(thirdLargest(BST));
 
 }
 
