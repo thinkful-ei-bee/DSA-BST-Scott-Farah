@@ -54,16 +54,18 @@ function isBST(node) {
   }
 }
 
+
+
 function _findMax(node) {
   if(!node.right) {
-      return node;
+    return node;
   }
   return _findMax(node.right);
 }
 
 function findSecondLargest(node){
   if(!node.left) {
-    return node.parent
+    return node.parent;
   } else {
     return _findMax(node.left);
   }
@@ -71,7 +73,7 @@ function findSecondLargest(node){
 
 function thirdLargest(node) {
   if(!node.left && !node.right) {
-    return "tree is empty!!!!!";
+    return 'tree is empty!!!!!';
   }
 
   const maxNum = _findMax(node);
@@ -79,11 +81,21 @@ function thirdLargest(node) {
 }
 
 
+//3
+//546
+//102
+//3
+//546
+//120
+
+
+
+
 function main() {
   const BST = new BinarySearchTree;
 
   const nums = [3,1,4,6,9,2,5,7,11,12];
-  const nums2 = [5, 4, 3, 1]
+  const nums2 = [5, 4, 3, 1];
   nums.forEach(num => BST.insert(num, num));
   //nums2.forEach(num => BST.insert(num, num));
 
@@ -98,3 +110,4 @@ function main() {
 }
 
 main();
+
